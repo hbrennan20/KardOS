@@ -25,7 +25,7 @@ export function NotificationBell() {
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 top-full mt-2 z-50 w-80 bg-card border rounded-xl shadow-xl overflow-hidden">
+          <div className="absolute left-0 top-full mt-2 z-50 w-80 bg-card border rounded-xl shadow-xl overflow-hidden">
             <div className="px-4 py-3 border-b">
               <h3 className="text-sm font-semibold">Notifications</h3>
               <p className="text-xs text-muted-foreground">{unreadCount} unread</p>

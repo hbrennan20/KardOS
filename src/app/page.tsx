@@ -11,7 +11,6 @@ import {
   opportunities,
   operationsMetrics,
   salesOrders,
-  customers,
   products,
   contracts,
   activityFeed,
@@ -57,13 +56,6 @@ const activityColors: Record<string, string> = {
 export default function ExecutiveDashboard() {
   const totalInventoryValue = products.reduce((sum, p) => sum + p.cost * p.stock, 0);
   const inventoryTurnover = 8.2;
-  const topCustomerRevenue = customers
-    .sort((a, b) => b.lifetimeValue - a.lifetimeValue)
-    .slice(0, 3)
-    .reduce((sum, c) => sum + c.lifetimeValue, 0);
-  const totalRevenue = customers.reduce((sum, c) => sum + c.lifetimeValue, 0);
-  const _topCustomerPct = (topCustomerRevenue / totalRevenue) * 100;
-
   const activeContracts = contracts.filter((c) => c.status === "active").length;
   const contractValue = contracts.filter((c) => c.status === "active").reduce((s, c) => s + c.value, 0);
 

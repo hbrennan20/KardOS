@@ -60,7 +60,7 @@ export default function ContractsPage() {
               </thead>
               <tbody>
                 {contracts
-                  .sort((a, _b) => (a.status === "active" ? -1 : 1))
+                  .sort((a) => (a.status === "active" ? -1 : 1))
                   .map((c) => {
                     const end = new Date(c.endDate);
                     const now = new Date();

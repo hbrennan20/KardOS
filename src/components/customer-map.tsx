@@ -27,6 +27,7 @@ export function CustomerMap({ className }: { className?: string }) {
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
+    if (!mapboxgl.accessToken) return;
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -81,6 +82,11 @@ export function CustomerMap({ className }: { className?: string }) {
   return (
     <div className={className}>
       <div ref={mapContainer} className="w-full h-full rounded-lg" />
+      {!mapboxgl.accessToken && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted rounded-lg text-muted-foreground text-sm">
+          Map unavailable — Mapbox token not configured
+        </div>
+      )}
     </div>
   );
 }

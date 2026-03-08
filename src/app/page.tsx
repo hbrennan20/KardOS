@@ -62,7 +62,7 @@ export default function ExecutiveDashboard() {
     .slice(0, 3)
     .reduce((sum, c) => sum + c.lifetimeValue, 0);
   const totalRevenue = customers.reduce((sum, c) => sum + c.lifetimeValue, 0);
-  const topCustomerPct = (topCustomerRevenue / totalRevenue) * 100;
+  const _topCustomerPct = (topCustomerRevenue / totalRevenue) * 100;
 
   const activeContracts = contracts.filter((c) => c.status === "active").length;
   const contractValue = contracts.filter((c) => c.status === "active").reduce((s, c) => s + c.value, 0);

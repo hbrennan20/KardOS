@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Building, Users, Bell, Shield, Database, Globe } from "lucide-react";
+import { Building, Users, Bell, Shield, Database, Globe } from "lucide-react";
 
 export default function SettingsPage() {
   return (

@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { contracts, customers, salesOrders, products, suppliers, formatCurrency } from "./data";
+import { contracts, customers, salesOrders, products, formatCurrency } from "./data";
 
 function addHeader(doc: jsPDF) {
   doc.setFillColor(15, 15, 15);

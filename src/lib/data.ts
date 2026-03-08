@@ -153,6 +153,63 @@ export const riskMetrics = {
   dscrRequired: 1.20,
 };
 
+// ─── Customer Locations (Ireland) ─────────────────────────
+export const customerLocations: { id: string; name: string; lat: number; lng: number; sector: string; revenue: number }[] = [
+  { id: "C001", name: "Abbott Ireland", lat: 52.8409, lng: -6.9341, sector: "Pharmaceuticals", revenue: 487200 },
+  { id: "C002", name: "Valeo Foods", lat: 53.3498, lng: -6.2603, sector: "Food Processing", revenue: 392100 },
+  { id: "C003", name: "Kingspan Group", lat: 53.9871, lng: -6.7406, sector: "Construction", revenue: 621000 },
+  { id: "C004", name: "Kepak Group", lat: 53.5256, lng: -6.4575, sector: "Food Processing", revenue: 278500 },
+  { id: "C005", name: "WaterWipes", lat: 53.2707, lng: -9.0568, sector: "Healthcare", revenue: 156800 },
+  { id: "C006", name: "Stafford Engineering", lat: 52.6638, lng: -8.6267, sector: "Manufacturing", revenue: 345600 },
+  { id: "C007", name: "Mercury Engineering", lat: 53.3025, lng: -6.3653, sector: "Construction", revenue: 534200 },
+  { id: "C008", name: "Dawn Meats", lat: 52.3540, lng: -7.6943, sector: "Food Processing", revenue: 89400 },
+  { id: "C009", name: "Glanbia", lat: 52.6554, lng: -7.2525, sector: "Food Processing", revenue: 412300 },
+  { id: "C010", name: "Irish Distillers", lat: 51.8985, lng: -8.4756, sector: "Food Processing", revenue: 267800 },
+  { id: "C011", name: "Boston Scientific", lat: 53.2760, lng: -9.0497, sector: "Healthcare", revenue: 498700 },
+  { id: "C012", name: "CRH plc", lat: 53.3331, lng: -6.2489, sector: "Construction", revenue: 712000 },
+  { id: "C013", name: "Kerry Group", lat: 52.2668, lng: -9.6905, sector: "Food Processing", revenue: 124500 },
+  { id: "C014", name: "Smurfit Kappa", lat: 53.3478, lng: -6.2597, sector: "Manufacturing", revenue: 298600 },
+  { id: "C015", name: "Penneys/Primark", lat: 53.3441, lng: -6.2675, sector: "Retail", revenue: 87600 },
+];
+
+// ─── Contracts ────────────────────────────────────────────
+export const contracts = [
+  { id: "CTR-001", customer: "C001", customerName: "Abbott Ireland", type: "Supply Agreement", status: "active" as const, startDate: "2025-01-15", endDate: "2026-12-31", value: 120000, terms: "Net 30", autoRenew: true },
+  { id: "CTR-002", customer: "C003", customerName: "Kingspan Group", type: "Framework Agreement", status: "active" as const, startDate: "2025-03-01", endDate: "2027-02-28", value: 250000, terms: "Net 45", autoRenew: true },
+  { id: "CTR-003", customer: "C012", customerName: "CRH plc", type: "Supply Agreement", status: "active" as const, startDate: "2024-06-01", endDate: "2026-05-31", value: 350000, terms: "Net 60", autoRenew: false },
+  { id: "CTR-004", customer: "C002", customerName: "Valeo Foods", type: "Service Level Agreement", status: "active" as const, startDate: "2025-07-01", endDate: "2026-06-30", value: 85000, terms: "Net 30", autoRenew: true },
+  { id: "CTR-005", customer: "C009", customerName: "Glanbia", type: "Supply Agreement", status: "active" as const, startDate: "2025-04-01", endDate: "2026-09-30", value: 180000, terms: "Net 30", autoRenew: true },
+  { id: "CTR-006", customer: "C011", customerName: "Boston Scientific", type: "Framework Agreement", status: "active" as const, startDate: "2025-02-01", endDate: "2027-01-31", value: 220000, terms: "Net 45", autoRenew: true },
+  { id: "CTR-007", customer: "C007", customerName: "Mercury Engineering", type: "Supply Agreement", status: "active" as const, startDate: "2024-09-01", endDate: "2026-08-31", value: 165000, terms: "Net 30", autoRenew: false },
+  { id: "CTR-008", customer: "C006", customerName: "Stafford Engineering", type: "Service Level Agreement", status: "active" as const, startDate: "2025-06-01", endDate: "2026-05-31", value: 95000, terms: "Net 30", autoRenew: true },
+  { id: "CTR-009", customer: "C013", customerName: "Kerry Group", type: "Supply Agreement", status: "expired" as const, startDate: "2024-01-01", endDate: "2025-12-31", value: 75000, terms: "Net 30", autoRenew: false },
+  { id: "CTR-010", customer: "C004", customerName: "Kepak Group", type: "Supply Agreement", status: "active" as const, startDate: "2025-01-01", endDate: "2026-12-31", value: 110000, terms: "Net 30", autoRenew: true },
+  { id: "CTR-011", customer: "C014", customerName: "Smurfit Kappa", type: "Framework Agreement", status: "active" as const, startDate: "2025-05-01", endDate: "2026-10-31", value: 140000, terms: "Net 45", autoRenew: true },
+  { id: "CTR-012", customer: "C010", customerName: "Irish Distillers", type: "Supply Agreement", status: "active" as const, startDate: "2025-08-01", endDate: "2026-07-31", value: 98000, terms: "Net 30", autoRenew: true },
+];
+
+// ─── Activity Feed ────────────────────────────────────────
+export const activityFeed = [
+  { id: 1, type: "order" as const, message: "New order SO-4521 from Abbott Ireland", detail: "€3,450.00 — 12 items", timestamp: "2026-03-08T09:15:00", icon: "shopping-cart" },
+  { id: 2, type: "payment" as const, message: "Payment received from Valeo Foods", detail: "€8,750.00 — Invoice INV-3845", timestamp: "2026-03-08T08:42:00", icon: "credit-card" },
+  { id: 3, type: "shipment" as const, message: "Order SO-4519 shipped to Kingspan Group", detail: "15 items via DPD Express", timestamp: "2026-03-07T16:30:00", icon: "truck" },
+  { id: 4, type: "alert" as const, message: "V-Ring Seal 25mm out of stock", detail: "15 units/month demand — reorder needed", timestamp: "2026-03-07T14:20:00", icon: "alert-triangle" },
+  { id: 5, type: "contract" as const, message: "Contract CTR-002 renewal due in 90 days", detail: "Kingspan Group — Framework Agreement", timestamp: "2026-03-07T11:00:00", icon: "file-text" },
+  { id: 6, type: "order" as const, message: "Order SO-4520 processing", detail: "Stafford Engineering — €1,875.50", timestamp: "2026-03-08T10:05:00", icon: "shopping-cart" },
+  { id: 7, type: "opportunity" as const, message: "New AI opportunity detected", detail: "Glanbia — V-Belts & Pulleys cross-sell", timestamp: "2026-03-07T09:30:00", icon: "sparkles" },
+  { id: 8, type: "supplier" as const, message: "Hayley Group PO-2891 delayed", detail: "3 days overdue — impacting Abbott order", timestamp: "2026-03-07T08:15:00", icon: "truck" },
+];
+
+// ─── Notifications ────────────────────────────────────────
+export const notifications = [
+  { id: 1, title: "Invoice Overdue", message: "CRH plc invoice #INV-3892 (€22,300) is 45 days overdue", read: false, timestamp: "2026-03-08T09:00:00", type: "warning" as const },
+  { id: 2, title: "Stock Alert", message: "V-Ring Seal 25mm is out of stock with 15 units/month demand", read: false, timestamp: "2026-03-08T08:30:00", type: "critical" as const },
+  { id: 3, title: "Order Received", message: "New order SO-4521 from Abbott Ireland worth €3,450", read: false, timestamp: "2026-03-08T09:15:00", type: "info" as const },
+  { id: 4, title: "Delivery Delayed", message: "Hayley Group PO-2891 is 3 days late", read: true, timestamp: "2026-03-07T14:00:00", type: "warning" as const },
+  { id: 5, title: "Contract Expiring", message: "Kerry Group contract CTR-009 expired — renewal pending", read: true, timestamp: "2026-03-07T10:00:00", type: "warning" as const },
+  { id: 6, title: "Payment Received", message: "€8,750 payment from Valeo Foods cleared", read: true, timestamp: "2026-03-07T08:42:00", type: "info" as const },
+];
+
 // ─── Helpers ───────────────────────────────────────────────
 export function formatCurrency(value: number): string {
   return new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(value);

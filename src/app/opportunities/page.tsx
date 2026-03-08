@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MetricCard } from "@/components/metric-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,7 @@ import { opportunities, formatCurrency } from "@/lib/data";
 import { Sparkles, TrendingUp, RotateCcw, ArrowUpRight } from "lucide-react";
 
 export default function OpportunitiesPage() {
+  const router = useRouter();
   const totalEstimated = opportunities.reduce((s, o) => s + o.estimatedRevenue, 0);
   const crossSell = opportunities.filter((o) => o.type === "Cross-sell");
   const reactivation = opportunities.filter((o) => o.type === "Reactivation");
@@ -39,7 +41,7 @@ export default function OpportunitiesPage() {
             {opportunities
               .sort((a, b) => b.estimatedRevenue - a.estimatedRevenue)
               .map((opp) => (
-                <div key={opp.id} className="border rounded-lg p-4">
+                <div key={opp.id} className="border rounded-lg p-4 hover:bg-muted/50 cursor-pointer transition-colors" onClick={() => router.push(`/opportunities/${opp.id}`)}>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MetricCard } from "@/components/metric-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,7 @@ import { suppliers, formatCurrency, formatPercent } from "@/lib/data";
 import { Truck, Clock, CheckCircle, TrendingDown } from "lucide-react";
 
 export default function SuppliersPage() {
+  const router = useRouter();
   const totalSpend = suppliers.reduce((s, sup) => s + sup.totalSpend, 0);
   const avgMargin = suppliers.reduce((s, sup) => s + sup.avgMargin, 0) / suppliers.length;
   const avgLeadTime = suppliers.reduce((s, sup) => s + sup.avgLeadTime, 0) / suppliers.length;
@@ -52,7 +54,7 @@ export default function SuppliersPage() {
                 {suppliers
                   .sort((a, b) => b.totalSpend - a.totalSpend)
                   .map((sup) => (
-                    <tr key={sup.id} className="border-b last:border-0">
+                    <tr key={sup.id} className="border-b last:border-0 hover:bg-muted/50 cursor-pointer" onClick={() => router.push(`/suppliers/${sup.id}`)}>
                       <td className="py-3 font-medium">{sup.name}</td>
                       <td className="py-3">
                         <Badge variant="secondary" className="text-xs">{sup.category}</Badge>

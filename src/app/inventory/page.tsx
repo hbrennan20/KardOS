@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MetricCard } from "@/components/metric-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +8,7 @@ import { products, formatCurrency, formatNumber } from "@/lib/data";
 import { Package, RotateCcw, AlertTriangle, TrendingDown } from "lucide-react";
 
 export default function InventoryPage() {
+  const router = useRouter();
   const totalValue = products.reduce((s, p) => s + p.cost * p.stock, 0);
   const totalSKUs = products.length;
   const outOfStock = products.filter((p) => p.stock === 0).length;
@@ -90,7 +92,7 @@ export default function InventoryPage() {
                       const status =
                         p.stock === 0 ? "out" : daysSupply < 14 ? "low" : daysSupply > 120 ? "overstock" : "ok";
                       return (
-                        <tr key={p.sku} className="border-b last:border-0">
+                        <tr key={p.sku} className="border-b last:border-0 hover:bg-muted/50 cursor-pointer" onClick={() => router.push(`/inventory/${p.sku}`)}>
                           <td className="py-2 font-mono text-xs">{p.sku}</td>
                           <td className="py-2">{p.name}</td>
                           <td className="py-2 text-right">{formatNumber(p.stock)}</td>

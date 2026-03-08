@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MetricCard } from "@/components/metric-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +8,7 @@ import { salesOrders, financialSummary, formatCurrency } from "@/lib/data";
 import { ShoppingCart, Truck, Clock } from "lucide-react";
 
 export default function SalesPage() {
+  const router = useRouter();
   const todayOrders = salesOrders.filter((o) => o.date === "2026-03-08");
   const pending = salesOrders.filter((o) => o.status === "pending" || o.status === "processing");
   const shipped = salesOrders.filter((o) => o.status === "shipped");
@@ -63,7 +65,7 @@ export default function SalesPage() {
                 </thead>
                 <tbody>
                   {salesOrders.map((order) => (
-                    <tr key={order.id} className="border-b last:border-0">
+                    <tr key={order.id} className="border-b last:border-0 hover:bg-muted/50 cursor-pointer" onClick={() => router.push(`/sales/${order.id}`)}>
                       <td className="py-2 font-medium">{order.id}</td>
                       <td className="py-2">{order.customerName}</td>
                       <td className="py-2 text-muted-foreground">{order.date}</td>

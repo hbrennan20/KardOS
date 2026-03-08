@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MetricCard } from "@/components/metric-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +8,7 @@ import { products, formatCurrency, formatPercent, formatNumber } from "@/lib/dat
 import { BarChart3, TrendingUp, TrendingDown, Package } from "lucide-react";
 
 export default function ProductsPage() {
+  const router = useRouter();
   const productsWithMargin = products.map((p) => ({
     ...p,
     margin: ((p.price - p.cost) / p.price) * 100,
@@ -59,7 +61,7 @@ export default function ProductsPage() {
               </thead>
               <tbody>
                 {topBySales.map((p) => (
-                  <tr key={p.sku} className="border-b last:border-0">
+                  <tr key={p.sku} className="border-b last:border-0 hover:bg-muted/50 cursor-pointer" onClick={() => router.push(`/products/${p.sku}`)}>
                     <td className="py-2 font-mono text-xs">{p.sku}</td>
                     <td className="py-2">{p.name}</td>
                     <td className="py-2">

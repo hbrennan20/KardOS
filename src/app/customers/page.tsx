@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { MetricCard } from "@/components/metric-card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,7 @@ import { customers, formatCurrency } from "@/lib/data";
 import { Users, TrendingUp, AlertTriangle, Clock } from "lucide-react";
 
 export default function CustomersPage() {
+  const router = useRouter();
   const totalRevenue = customers.reduce((s, c) => s + c.lifetimeValue, 0);
   const totalOutstanding = customers.reduce((s, c) => s + c.outstandingBalance, 0);
   const activeCount = customers.filter((c) => c.status === "active").length;
@@ -62,7 +64,7 @@ export default function CustomersPage() {
                   .map((c) => {
                     const creditUsage = (c.outstandingBalance / c.creditLimit) * 100;
                     return (
-                      <tr key={c.id} className="border-b last:border-0">
+                      <tr key={c.id} className="border-b last:border-0 hover:bg-muted/50 cursor-pointer" onClick={() => router.push(`/customers/${c.id}`)}>
                         <td className="py-2 font-medium">{c.name}</td>
                         <td className="py-2">
                           <Badge variant="secondary" className="text-xs">{c.sector}</Badge>

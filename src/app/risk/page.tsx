@@ -187,7 +187,7 @@ export default function RiskPage() {
                 <div className="mt-0.5 h-2 w-2 rounded-full bg-amber-500 shrink-0" />
                 <div>
                   <p className="font-medium">CRH plc — High Credit Exposure</p>
-                  <p className="text-muted-foreground">€22,300 outstanding (37% of credit limit), 45 days overdue.</p>
+                  <p className="text-muted-foreground">€9,850 overdue on invoice INV-3892 (62% of credit limit), 45 days past terms.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

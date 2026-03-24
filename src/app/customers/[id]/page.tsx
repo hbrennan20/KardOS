@@ -5,9 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { customers, salesOrders, contracts, opportunities, formatCurrency } from "@/lib/data";
+import { customers, salesOrders, contracts, formatCurrency } from "@/lib/data";
 import { generateContractPDF, generateOrderPDF, generateInvoicePDF } from "@/lib/generate-pdf";
-import { ArrowLeft, Download, FileText, ShoppingCart, Sparkles } from "lucide-react";
+import { ArrowLeft, Download, FileText, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 export default function CustomerDetailPage() {
@@ -28,7 +28,6 @@ export default function CustomerDetailPage() {
   const creditUsage = (customer.outstandingBalance / customer.creditLimit) * 100;
   const customerOrders = salesOrders.filter((o) => o.customer === customer.id);
   const customerContracts = contracts.filter((c) => c.customer === customer.id);
-  const customerOpps = opportunities.filter((o) => o.customer === customer.name);
 
   return (
     <div className="space-y-6">
@@ -163,38 +162,6 @@ export default function CustomerDetailPage() {
           </CardContent>
         </Card>
       </div>
-
-      {customerOpps.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
-              AI Opportunities
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {customerOpps.map((opp) => (
-                <Link key={opp.id} href={`/opportunities/${opp.id}`} className="block border rounded-lg p-3 hover:bg-muted/50 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium text-sm">{opp.product}</span>
-                        <Badge variant="secondary" className="text-xs">{opp.type}</Badge>
-                      </div>
-                      <p className="text-xs text-muted-foreground mt-1">{opp.reason}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold">{formatCurrency(opp.estimatedRevenue)}</p>
-                      <p className="text-xs text-muted-foreground">{opp.confidence}% confidence</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }

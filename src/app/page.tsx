@@ -8,12 +8,12 @@ import { Badge } from "@/components/ui/badge";
 import {
   financialSummary,
   alerts,
-  opportunities,
   operationsMetrics,
   salesOrders,
   products,
   contracts,
   activityFeed,
+  riskMetrics,
   formatCurrency,
   formatPercent,
 } from "@/lib/data";
@@ -82,11 +82,10 @@ export default function ExecutiveDashboard() {
         <MetricCard title="Inventory Value" value={formatCurrency(totalInventoryValue)} icon={Package} subtitle={`Turnover: ${inventoryTurnover}x`} />
       </div>
 
-      <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-3">
         <MetricCard title="Monthly Revenue" value={formatCurrency(financialSummary.revenueThisMonth)} icon={DollarSign} subtitle={`Target: ${formatCurrency(financialSummary.revenueTarget)}`} />
-        <MetricCard title="AR Overdue" value={formatCurrency(34230)} icon={AlertTriangle} subtitle="5 invoices overdue" />
+        <MetricCard title="AR Overdue" value={formatCurrency(riskMetrics.overdueReceivables)} icon={AlertTriangle} subtitle="5 invoices overdue" />
         <MetricCard title="Active Contracts" value={activeContracts.toString()} icon={FileText} subtitle={formatCurrency(contractValue) + " total value"} />
-        <MetricCard title="AI Opportunities" value={opportunities.length.toString()} icon={Sparkles} subtitle={`${formatCurrency(opportunities.reduce((s, o) => s + o.estimatedRevenue, 0))} potential`} />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-5">
@@ -135,13 +134,12 @@ export default function ExecutiveDashboard() {
           <CardTitle className="text-base">Quick Actions</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
             {[
               { label: "View Sales", href: "/sales", icon: ShoppingCart, color: "bg-blue-50 text-blue-700 hover:bg-blue-100" },
               { label: "View Customers", href: "/customers", icon: Users, color: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100" },
               { label: "View Contracts", href: "/contracts", icon: FileText, color: "bg-amber-50 text-amber-700 hover:bg-amber-100" },
               { label: "Check Inventory", href: "/inventory", icon: Package, color: "bg-purple-50 text-purple-700 hover:bg-purple-100" },
-              { label: "AI Opportunities", href: "/opportunities", icon: Sparkles, color: "bg-cyan-50 text-cyan-700 hover:bg-cyan-100" },
               { label: "Risk Monitor", href: "/risk", icon: AlertTriangle, color: "bg-red-50 text-red-700 hover:bg-red-100" },
             ].map((action) => (
               <Link key={action.href} href={action.href}>
@@ -155,48 +153,17 @@ export default function ExecutiveDashboard() {
         </CardContent>
       </Card>
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
-              <AlertTriangle className="h-4 w-4" />
-              Active Alerts
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <AlertList alerts={alerts} limit={6} />
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2">
-              <Sparkles className="h-4 w-4" />
-              Top Sales Opportunities
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {opportunities.slice(0, 5).map((opp) => (
-                <Link key={opp.id} href={`/opportunities/${opp.id}`} className="block">
-                  <div className="flex items-start justify-between gap-4 text-sm hover:bg-muted/50 rounded-lg p-2 -mx-2 transition-colors">
-                    <div>
-                      <p className="font-medium">{opp.customer}</p>
-                      <p className="text-muted-foreground text-xs">{opp.reason}</p>
-                    </div>
-                    <div className="text-right shrink-0">
-                      <p className="font-medium">{formatCurrency(opp.estimatedRevenue)}</p>
-                      <Badge variant={opp.confidence > 70 ? "default" : "secondary"} className="text-[10px]">
-                        {opp.confidence}% confidence
-                      </Badge>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base flex items-center gap-2">
+            <AlertTriangle className="h-4 w-4" />
+            Active Alerts
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <AlertList alerts={alerts} limit={6} />
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>

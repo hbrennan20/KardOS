@@ -19,14 +19,14 @@ export default function SalesPage() {
   }, {} as Record<string, number>);
 
   const categoryRevenue: Record<string, number> = {
-    "Bearings": 42500,
-    "Fasteners": 18200,
-    "Oil Seals": 12800,
+    "Bearings": 40800,
+    "Fasteners": 18400,
+    "Oil Seals": 12900,
     "Chains & Sprockets": 9400,
     "Couplings": 7200,
     "Motors": 5600,
     "Belts": 4100,
-    "Lubricants": 3500,
+    "Lubricants": 3600,
   };
 
   return (

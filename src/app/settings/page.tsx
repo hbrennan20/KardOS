@@ -111,7 +111,7 @@ export default function SettingsPage() {
                 ["Platform", "KardOS v1.0"],
                 ["Environment", "Production"],
                 ["Database", "Connected"],
-                ["AI Engine", "Active — 8 opportunities detected"],
+                ["AI Engine", "Active"],
                 ["Last Backup", "2026-03-08 04:00"],
                 ["API Status", "Operational"],
                 ["Uptime", "99.9%"],
